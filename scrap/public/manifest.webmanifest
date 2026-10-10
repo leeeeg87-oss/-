@@ -1,0 +1,14 @@
+{
+  "name": "حديد وخزين",
+  "short_name": "حديد وخزين",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "/scrap.html",
+  "display": "standalone",
+  "background_color": "#10233f",
+  "theme_color": "#10233f",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

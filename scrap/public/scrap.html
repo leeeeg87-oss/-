@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#10233f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="حديد وخزين">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<link rel="icon" href="/icon-192.png">
+<title>حديد وخزين</title>
+<style>
+  :root {
+    --navy:#10233f; --orange:#ff7a00; --green:#12a150; --bg:#f3f5f8; --card:#fff;
+    --text:#101828; --muted:#5b6675; --line:#d6dce4; --red:#c62828;
+  }
+  * { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html, body { margin:0; min-height:100%; }
+  body {
+    background:var(--bg); color:var(--text); font-size:20px; line-height:1.5;
+    font-family:"Cairo",system-ui,"Segoe UI",Tahoma,sans-serif;
+    display:flex; flex-direction:column; min-height:100vh; min-height:100dvh;
+  }
+  button { font:inherit; cursor:pointer; border:0; border-radius:18px; color:inherit; }
+  button:active { transform:scale(.97); }
+  [hidden] { display:none !important; }
+
+  header { background:var(--navy); color:#fff; padding:14px 16px; padding-top:calc(14px + env(safe-area-inset-top));
+           display:flex; justify-content:center; align-items:center; gap:10px; }
+  .logo-badge { background:var(--orange); color:#fff; font-weight:900; font-size:1.7rem; padding:0 14px; border-radius:12px; }
+  .logo-text { font-weight:800; font-size:1.7rem; }
+
+  main { flex:1; width:100%; max-width:560px; margin:0 auto; padding:16px; }
+  h2 { font-size:1.5rem; margin:4px 0 14px; text-align:center; }
+
+  .back { background:transparent; color:var(--navy); font-weight:800; font-size:1.2rem; padding:8px 4px; margin-bottom:4px; }
+
+  /* الشاشة 1 */
+  .grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .cat { background:var(--card); border:3px solid var(--navy); color:var(--navy); padding:18px 8px; min-height:150px;
+         display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; font-weight:900; font-size:1.6rem; }
+  .cat .emoji { font-size:3.6rem; line-height:1; }
+  .cat:nth-child(odd) { background:#fff3e6; border-color:var(--orange); }
+  .cat:last-child:nth-child(odd) { grid-column:1 / -1; }
+  .cat .tag { font-size:.8rem; font-weight:700; color:var(--muted); }
+
+  /* الشاشة 2 */
+  .who { text-align:center; font-weight:900; font-size:1.8rem; }
+  .who span { font-size:2.6rem; vertical-align:middle; }
+  .display { background:var(--navy); color:#fff; border-radius:18px; padding:10px 18px; margin:10px 0; text-align:center;
+             direction:ltr; font-size:3.4rem; font-weight:900; min-height:90px; display:flex; align-items:center; justify-content:center; gap:10px; }
+  .display small { font-size:1.4rem; font-weight:700; color:#ffc58a; }
+  .seg { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:12px; }
+  .seg button { background:#e3e8ef; color:var(--navy); font-weight:900; font-size:1.5rem; padding:12px; }
+  .seg button.on { background:var(--orange); color:#fff; }
+  .pad { display:grid; grid-template-columns:repeat(3,1fr); gap:10px; direction:ltr; }
+  .pad button { background:var(--card); border:2px solid var(--line); font-size:2.2rem; font-weight:900; min-height:72px; color:var(--navy); }
+  .pad button.del { background:#ffe3e3; color:var(--red); }
+  .go { width:100%; margin-top:14px; background:var(--green); color:#fff; font-weight:900; font-size:1.8rem; padding:18px; }
+  .go:disabled { background:#a9b3bf; }
+
+  /* الشاشة 3 */
+  .result-card { background:var(--card); border:3px solid var(--navy); border-radius:22px; padding:16px; text-align:center; }
+  .result-card .what { font-size:1.6rem; font-weight:900; }
+  .result-card .what span { font-size:2.4rem; vertical-align:middle; }
+  .result-card .weight { color:var(--muted); font-size:1.3rem; font-weight:700; }
+  .price { font-size:4.6rem; font-weight:900; color:var(--green); line-height:1.15; margin:8px 0 0; direction:ltr; }
+  .price small { font-size:1.6rem; color:var(--navy); }
+  .unit-price { font-size:1.15rem; color:var(--muted); font-weight:700; }
+  .row2 { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:12px; }
+  .row2 button { padding:16px 6px; font-weight:900; font-size:1.3rem; }
+  .speak { background:var(--navy); color:#fff; }
+  .share { background:#25d366; color:#fff; }
+  .sell { width:100%; margin-top:12px; background:var(--orange); color:#fff; font-weight:900; font-size:2rem; padding:22px 10px; box-shadow:0 6px 0 #c85f00; }
+  .small { font-size:.85rem; color:var(--muted); text-align:center; margin:10px 0 0; }
+  .warn { font-size:.9rem; color:var(--red); font-weight:700; text-align:center; margin:6px 0 0; }
+  .note { margin-top:10px; background:#fff8e1; border:2px solid #ffd54f; border-radius:12px; padding:8px; font-size:.95rem; font-weight:700; text-align:center; }
+
+  .status { text-align:center; padding:30px 10px; font-weight:800; font-size:1.3rem; }
+  .retry { background:var(--orange); color:#fff; font-weight:900; padding:12px 24px; margin-top:10px; }
+
+  footer { background:var(--navy); color:#cfd8e6; text-align:center; font-size:.95rem; padding:12px 16px;
+           padding-bottom:calc(12px + env(safe-area-inset-bottom)); }
+  footer b { color:#fff; direction:ltr; unicode-bidi:embed; }
+button,input,select,textarea{font-family:inherit}
+</style>
+</head>
+<body>
+
+<header>
+  <span class="logo-badge">H&amp;KH</span>
+  <span class="logo-text">للسكراب</span>
+</header>
+
+<main>
+  <!-- الشاشة 1: اختيار النوع -->
+  <section id="s1">
+    <h2>وش عندك؟ 👇</h2>
+    <div id="status" class="status">جاري تحميل الأسعار…</div>
+    <div id="grid" class="grid" hidden></div>
+  </section>
+
+  <!-- الشاشة 2: الوزن -->
+  <section id="s2" hidden>
+    <button class="back" data-back>➡️ رجوع</button>
+    <div class="who"><span id="s2emoji"></span> <b id="s2name"></b></div>
+    <div class="display"><span id="num">0</span><small id="numUnit">كيلو</small></div>
+    <div class="seg">
+      <button id="uKg" class="on" type="button">كيلو</button>
+      <button id="uTon" type="button">طن</button>
+    </div>
+    <div class="pad" id="pad"></div>
+    <button class="go" id="go" disabled>احسب السعر ✅</button>
+  </section>
+
+  <!-- الشاشة 3: النتيجة -->
+  <section id="s3" hidden>
+    <button class="back" data-back>➡️ رجوع</button>
+    <div class="result-card">
+      <div class="what"><span id="s3emoji"></span> <b id="s3name"></b></div>
+      <div class="weight" id="s3weight"></div>
+      <div class="price"><span id="s3price"></span> <small>ريال</small></div>
+      <div class="unit-price" id="s3unit"></div>
+      <div class="note" id="s3note" hidden></div>
+    </div>
+    <div class="row2">
+      <button class="speak" id="speak">🔊 اسمع السعر</button>
+      <button class="share" id="share">📤 شارك واتساب</button>
+    </div>
+    <button class="sell" id="sell">أبغى أبيع 💰</button>
+    <p class="small" id="updated"></p>
+    <p class="warn" id="stale" hidden>⚠️ الأسعار قديمة، تأكد من الاتصال</p>
+    <p class="small">السعر تقديري وليس عرض شراء</p>
+  </section>
+</main>
+
+<footer>بإدارة حديد وخزين · واتساب <b>0535273771</b></footer>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const MAX_DIGITS = 9;
+  const STALE_HOURS = 6;
+  const CACHE_KEY = "sahed-prices-v1";
+
+  let data = null;        // رد الدالة: { items, updatedAt, source, whatsappNumber }
+  let cat = null;         // النوع المختار
+  let digits = "";        // الرقم المكتوب كنص
+  let unit = "kg";        // kg | ton
+
+  // ---------- أدوات ----------
+  const fmt = n => {
+    if (n >= 100) return Math.round(n).toLocaleString("en-US");
+    return n.toLocaleString("en-US", { maximumFractionDigits: 2, minimumFractionDigits: n < 10 ? 2 : 0 });
+  };
+  const unitWord = () => unit === "kg" ? "كيلو" : "طن";
+  const weightValue = () => parseFloat(digits) || 0;
+  const totalSar = () => {
+    const w = weightValue();
+    return unit === "kg" ? cat.sarPerKg * w : cat.sarPerTon * w;
+  };
+  const weightText = () => `${weightValue().toLocaleString("en-US")} ${unitWord()}`;
+  const dateText = iso => {
+    const d = new Date(iso);
+    if (isNaN(d)) return "غير معروف";
+    return d.toLocaleString("ar-SA-u-nu-latn", { dateStyle: "medium", timeStyle: "short" });
+  };
+
+  // ---------- التنقل بين الشاشات (يشتغل مع زر الرجوع في الجوال) ----------
+  function show(n) {
+    ["s1", "s2", "s3"].forEach((id, i) => $(id).hidden = (i + 1 !== n));
+    window.scrollTo(0, 0);
+  }
+  function go(n) { history.pushState({ n }, ""); show(n); }
+  window.addEventListener("popstate", e => {
+    const n = (e.state && e.state.n) || 1;
+    if (n > 1 && !cat) return show(1);
+    show(n);
+  });
+  history.replaceState({ n: 1 }, "");
+  document.querySelectorAll("[data-back]").forEach(b => b.addEventListener("click", () => history.back()));
+
+  // ---------- الشاشة 1 ----------
+  function renderGrid() {
+    const grid = $("grid");
+    grid.innerHTML = "";
+    data.items.forEach(item => {
+      const b = document.createElement("button");
+      b.className = "cat";
+      b.type = "button";
+      b.innerHTML = `<span class="emoji">${item.emoji}</span><span>${item.name}</span>`;
+      b.addEventListener("click", () => pick(item));
+      grid.appendChild(b);
+    });
+    $("status").hidden = true;
+    grid.hidden = false;
+  }
+
+  async function loadPrices() {
+    $("status").hidden = false;
+    $("status").textContent = "جاري تحميل الأسعار…";
+    $("grid").hidden = true;
+    try {
+      const res = await fetch("/api/prices", { cache: "no-store" });
+      if (!res.ok) throw new Error(res.status);
+      data = await res.json();
+      try { localStorage.setItem(CACHE_KEY, JSON.stringify(data)); } catch {}
+    } catch {
+      try { data = JSON.parse(localStorage.getItem(CACHE_KEY)); } catch { data = null; }
+    }
+    if (data && data.items) return renderGrid();
+    $("status").innerHTML = `ما قدرنا نجيب الأسعار 😕<br><button class="retry" id="retry">جرّب مرة ثانية</button>`;
+    $("retry").addEventListener("click", loadPrices);
+  }
+
+  // ---------- الشاشة 2 ----------
+  function pick(item) {
+    cat = item; digits = ""; unit = "kg";
+    $("s2emoji").textContent = item.emoji;
+    $("s2name").textContent = item.name;
+    refreshDisplay();
+    go(2);
+  }
+
+  function refreshDisplay() {
+    $("num").textContent = digits === "" ? "0" : digits;
+    $("numUnit").textContent = unitWord();
+    $("uKg").classList.toggle("on", unit === "kg");
+    $("uTon").classList.toggle("on", unit === "ton");
+    $("go").disabled = !(weightValue() > 0);
+  }
+
+  const keys = ["7","8","9","4","5","6","1","2","3",".","0","⌫"];
+  keys.forEach(k => {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.textContent = k;
+    if (k === "⌫") b.className = "del";
+    b.addEventListener("click", () => {
+      if (k === "⌫") digits = digits.slice(0, -1);
+      else if (k === ".") { if (!digits.includes(".")) digits = (digits || "0") + "."; }
+      else if (digits.length < MAX_DIGITS) digits = digits === "0" ? k : digits + k;
+      refreshDisplay();
+    });
+    $("pad").appendChild(b);
+  });
+  $("uKg").addEventListener("click", () => { unit = "kg"; refreshDisplay(); });
+  $("uTon").addEventListener("click", () => { unit = "ton"; refreshDisplay(); });
+
+  // ---------- الشاشة 3 ----------
+  $("go").addEventListener("click", () => {
+    if (!(weightValue() > 0)) return;
+    $("s3emoji").textContent = cat.emoji;
+    $("s3name").textContent = cat.name;
+    $("s3weight").textContent = weightText();
+    $("s3price").textContent = fmt(totalSar());
+    $("s3unit").textContent = unit === "kg"
+      ? `سعر الكيلو: ${fmt(cat.sarPerKg)} ريال`
+      : `سعر الطن: ${fmt(cat.sarPerTon)} ريال`;
+
+    const note = $("s3note");
+    note.hidden = !cat.manual;
+    if (cat.manual) note.textContent = `${cat.note || "سعر ثابت"} — ما يتحدث تلقائيًا`;
+
+    $("updated").textContent = `آخر تحديث للسعر: ${dateText(data.updatedAt)} · المصدر: ${data.source}`;
+    const ageH = (Date.now() - new Date(data.updatedAt).getTime()) / 36e5;
+    $("stale").hidden = !(ageH > STALE_HOURS);
+    go(3);
+  });
+
+  function sellMessage() {
+    return `السلام عليكم، أبغى أبيع، تواصل معي.\n` +
+           `النوع: ${cat.name}\nالوزن: ${weightText()}\nالسعر التقديري: ${fmt(totalSar())} ريال`;
+  }
+  function shareMessage() {
+    return `سعر ${cat.name} (${weightText()}): ${fmt(totalSar())} ريال تقريبًا\n` +
+           `السعر تقديري وليس عرض شراء\nحديد وخزين: ${location.origin}`;
+  }
+  const wa = (text, phone) =>
+    window.open(`https://wa.me/${phone || ""}?text=${encodeURIComponent(text)}`, "_blank", "noopener");
+
+  $("sell").addEventListener("click", () => wa(sellMessage(), data.whatsappNumber));
+  $("share").addEventListener("click", () => wa(shareMessage()));
+
+  $("speak").addEventListener("click", () => {
+    if (!("speechSynthesis" in window)) { alert("جوالك ما يدعم الصوت"); return; }
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(
+      `السعر التقديري لـ ${weightText()} ${cat.name}، ${fmt(totalSar())} ريال تقريبًا`
+    );
+    u.lang = "ar-SA";
+    u.rate = 0.9;
+    speechSynthesis.speak(u);
+  });
+
+  // ---------- تشغيل ----------
+  if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js").catch(() => {});
+  loadPrices();
+})();
+</script>
+</body>
+</html>

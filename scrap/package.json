@@ -1,0 +1,9 @@
+{
+  "name": "scrap",
+  "version": "1.0.0",
+  "private": true,
+  "description": "ساهد للسكراب - أداة تسعير السكراب",
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0"
+  }
+}

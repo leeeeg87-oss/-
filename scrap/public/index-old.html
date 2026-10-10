@@ -1,0 +1,459 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#10233f">
+<meta name="description" content="ساهد: وساطة عقارية واستشارات استثمارية وخدمات عامة في الرياض، مع حاسبة أسعار السكراب والمعادن اليومية.">
+<meta property="og:title" content="ساهد | عقارات واستثمار وسكراب">
+<meta property="og:description" content="وساطة عقارية، استشارات استثمارية، وحاسبة أسعار السكراب بأسعار بورصة لندن للمعادن.">
+<meta property="og:type" content="website">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="ساهد">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<link rel="icon" href="/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<title>ساهد | عقارات واستثمار وسكراب</title>
+<style>
+  :root {
+    --navy:#10233f; --navy-2:#0a1829; --orange:#ff7a00; --orange-d:#c85f00; --orange-soft:#fff3e6;
+    --green:#12a150; --wa:#1fa855; --bg:#f6f7fa; --card:#fff; --text:#101828; --muted:#5b6675;
+    --line:#e3e8ef; --red:#c62828; --r:20px; --max:1120px;
+  }
+  *, *::before, *::after { box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  html { scroll-behavior:smooth; scroll-padding-top:76px; }
+  body {
+    margin:0; background:var(--bg); color:var(--text); font-size:17px; line-height:1.7;
+    font-family:"IBM Plex Sans Arabic",system-ui,"Segoe UI",Tahoma,"Noto Sans Arabic",sans-serif;
+  }
+  [hidden] { display:none !important; }
+  a { color:inherit; text-decoration:none; }
+  button, input { font:inherit; color:inherit; }
+  button { cursor:pointer; border:0; }
+  :focus-visible { outline:3px solid var(--orange); outline-offset:3px; border-radius:8px; }
+  .wrap { width:100%; max-width:var(--max); margin:0 auto; padding:0 16px; }
+  @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } * { transition:none !important; } }
+
+  /* ---------- أزرار ---------- */
+  .btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:48px; padding:10px 22px;
+         border-radius:14px; font-weight:700; font-size:1rem; transition:transform .15s, background .15s; }
+  .btn:active { transform:scale(.97); }
+  .btn-primary { background:var(--orange); color:#fff; }
+  .btn-primary:hover { background:var(--orange-d); }
+  .btn-wa { background:var(--wa); color:#fff; }
+  .btn-wa:hover { background:#168a46; }
+  .btn-ghost { background:rgba(255,255,255,.1); color:#fff; border:1.5px solid rgba(255,255,255,.35); }
+  .btn-ghost:hover { background:rgba(255,255,255,.18); }
+  .btn-dark { background:var(--navy); color:#fff; }
+  .btn:disabled { background:#c3cad4; color:#fff; cursor:not-allowed; }
+
+  /* ---------- الهيدر ---------- */
+  header.top { position:sticky; top:0; z-index:50; background:rgba(16,35,63,.94); backdrop-filter:blur(10px);
+               -webkit-backdrop-filter:blur(10px); padding-top:env(safe-area-inset-top); }
+  header.top .wrap { display:flex; align-items:center; justify-content:space-between; gap:12px; min-height:64px; }
+  .brand { display:flex; align-items:center; gap:10px; color:#fff; font-weight:700; }
+  .brand .badge { background:var(--orange); border-radius:10px; padding:0 12px; font-weight:700; font-size:1.35rem; line-height:1.9; }
+  .brand .sub { font-size:.95rem; color:#cfd8e6; font-weight:500; }
+  nav.links { display:none; gap:6px; }
+  nav.links a { color:#dbe3ee; padding:8px 14px; border-radius:10px; font-weight:500; }
+  nav.links a:hover { background:rgba(255,255,255,.1); color:#fff; }
+  header.top .btn { min-height:42px; padding:6px 16px; font-size:.95rem; }
+  @media (min-width:820px) { nav.links { display:flex; } }
+
+  /* ---------- الواجهة الرئيسية ---------- */
+  .hero { position:relative; color:#fff; overflow:hidden;
+          background:radial-gradient(900px 420px at 85% -10%, rgba(255,122,0,.28), transparent 60%),
+                     radial-gradient(700px 400px at 0% 110%, rgba(40,90,170,.35), transparent 60%),
+                     linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 100%); }
+  .hero::before { content:""; position:absolute; inset:0; opacity:.07; pointer-events:none;
+                  background-image:linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px);
+                  background-size:44px 44px; }
+  .hero .wrap { position:relative; padding-top:clamp(48px,9vw,104px); padding-bottom:clamp(56px,10vw,112px); }
+  .eyebrow { display:inline-block; background:rgba(255,122,0,.16); color:#ffc58a; border:1px solid rgba(255,122,0,.4);
+             padding:4px 14px; border-radius:999px; font-weight:600; font-size:.9rem; margin-bottom:18px; }
+  .hero h1 { margin:0 0 16px; font-size:clamp(2rem,6.2vw,3.7rem); line-height:1.25; font-weight:700; max-width:22ch; text-wrap:balance; }
+  .hero h1 em { font-style:normal; color:var(--orange); }
+  .hero p.lead { margin:0 0 28px; color:#cfd8e6; font-size:clamp(1.05rem,2.6vw,1.25rem); max-width:46ch; }
+  .hero .cta { display:flex; flex-wrap:wrap; gap:12px; }
+  .pills { display:flex; flex-wrap:wrap; gap:10px; margin-top:34px; padding:0; list-style:none; }
+  .pills li { background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.16); padding:6px 14px;
+              border-radius:999px; font-size:.92rem; color:#e5ecf6; }
+
+  /* ---------- الأقسام ---------- */
+  section.block { padding:clamp(48px,8vw,88px) 0; }
+  .sec-head { text-align:center; max-width:640px; margin:0 auto 36px; }
+  .sec-head .kicker { color:var(--orange-d); font-weight:700; font-size:.95rem; }
+  .sec-head h2 { margin:4px 0 10px; font-size:clamp(1.6rem,4.4vw,2.4rem); line-height:1.3; }
+  .sec-head p { margin:0; color:var(--muted); }
+
+  .cards { display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:var(--r); padding:26px 22px;
+          transition:transform .2s, box-shadow .2s; }
+  .card:hover { transform:translateY(-3px); box-shadow:0 14px 34px rgba(16,35,63,.1); }
+  .card .ico { width:54px; height:54px; border-radius:16px; background:var(--orange-soft); display:grid; place-items:center;
+               font-size:1.7rem; margin-bottom:14px; }
+  .card h3 { margin:0 0 6px; font-size:1.2rem; }
+  .card p { margin:0; color:var(--muted); font-size:.98rem; }
+
+  /* عقارات */
+  .re { background:#fff; border-block:1px solid var(--line); }
+  .re-grid { display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); }
+  .re-btn { text-align:right; background:var(--bg); border:1.5px solid var(--line); border-radius:var(--r); padding:22px;
+            display:flex; flex-direction:column; gap:4px; transition:border-color .2s, transform .2s, background .2s; }
+  .re-btn:hover { border-color:var(--orange); background:var(--orange-soft); transform:translateY(-2px); }
+  .re-btn b { font-size:1.25rem; }
+  .re-btn span { color:var(--muted); font-size:.95rem; }
+  .re-btn i { font-style:normal; color:var(--wa); font-weight:700; margin-top:8px; font-size:.95rem; }
+  .re-note { text-align:center; color:var(--muted); font-size:.95rem; margin:22px 0 0; }
+
+  /* السكراب */
+  .scrap { background:linear-gradient(180deg,var(--navy) 0%,var(--navy-2) 100%); color:#fff; }
+  .scrap .sec-head .kicker { color:#ffc58a; }
+  .scrap .sec-head p { color:#cfd8e6; }
+  .tool { background:var(--card); color:var(--text); border-radius:26px; padding:clamp(18px,4vw,32px); max-width:760px; margin:0 auto;
+          box-shadow:0 24px 60px rgba(0,0,0,.35); }
+  .tool h3 { margin:0 0 14px; text-align:center; font-size:1.3rem; }
+  .status { text-align:center; padding:28px 10px; font-weight:600; color:var(--muted); }
+  .retry { background:var(--orange); color:#fff; font-weight:700; padding:10px 22px; border-radius:12px; margin-top:10px; }
+  .cats { display:grid; gap:12px; grid-template-columns:repeat(2,1fr); }
+  @media (min-width:640px) { .cats { grid-template-columns:repeat(4,1fr); } }
+  .cat { background:var(--bg); border:2px solid var(--line); border-radius:18px; padding:16px 8px; min-height:118px;
+         display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px; font-weight:700;
+         transition:border-color .15s, background .15s, transform .15s; }
+  .cat:hover { border-color:var(--orange); background:var(--orange-soft); }
+  .cat:active { transform:scale(.97); }
+  .cat .emoji { font-size:2.3rem; line-height:1.2; }
+  .cat .nm { font-size:1.08rem; }
+  .cat .pk { font-size:.82rem; color:var(--muted); font-weight:500; }
+
+  .back { background:transparent; color:var(--navy); font-weight:700; padding:6px 2px; margin-bottom:6px; }
+  .who { text-align:center; font-weight:700; font-size:1.5rem; margin-bottom:12px; }
+  .who span { font-size:2.2rem; vertical-align:middle; }
+  .field { display:flex; gap:10px; align-items:stretch; flex-wrap:wrap; justify-content:center; }
+  .field input { flex:1 1 170px; min-width:0; text-align:center; direction:ltr; font-size:2.2rem; font-weight:700; padding:10px 14px;
+                 border:2px solid var(--line); border-radius:16px; background:#fff; }
+  .field input:focus { border-color:var(--orange); outline:none; }
+  .seg { display:flex; background:#e9edf3; border-radius:16px; padding:4px; gap:4px; }
+  .seg button { background:transparent; color:var(--navy); font-weight:700; padding:0 22px; min-height:52px; border-radius:12px; font-size:1.05rem; }
+  .seg button.on { background:var(--orange); color:#fff; }
+  .result { margin-top:16px; background:var(--navy); color:#fff; border-radius:20px; padding:18px 14px; text-align:center; }
+  .result .lbl { color:#cfd8e6; font-size:.95rem; }
+  .result .price { font-size:clamp(2.6rem,10vw,3.8rem); font-weight:700; line-height:1.15; direction:ltr; color:#7ee2a8; }
+  .result .price small { font-size:1.2rem; color:#fff; font-weight:500; }
+  .result .unit { color:#cfd8e6; font-size:.95rem; }
+  .note { margin-top:12px; background:#fff8e1; border:1.5px solid #ffd54f; border-radius:12px; padding:8px 12px; font-size:.92rem; font-weight:600; text-align:center; color:#5d4a00; }
+  .acts { display:grid; gap:10px; grid-template-columns:1fr 1fr; margin-top:14px; }
+  .acts .sell { grid-column:1 / -1; min-height:58px; font-size:1.2rem; }
+  .small { font-size:.85rem; color:var(--muted); text-align:center; margin:10px 0 0; }
+  .warn { font-size:.9rem; color:var(--red); font-weight:600; text-align:center; margin:6px 0 0; }
+
+  /* تواصل */
+  .contact-card { background:var(--navy); color:#fff; border-radius:28px; padding:clamp(28px,6vw,52px); text-align:center;
+                  background-image:radial-gradient(600px 260px at 90% 0%, rgba(255,122,0,.25), transparent 60%); }
+  .contact-card h2 { margin:0 0 8px; font-size:clamp(1.5rem,4vw,2.2rem); }
+  .contact-card p { margin:0 0 22px; color:#cfd8e6; }
+  .contact-card .cta { display:flex; flex-wrap:wrap; gap:12px; justify-content:center; }
+  .num { direction:ltr; unicode-bidi:embed; }
+
+  footer { background:var(--navy-2); color:#9fb0c7; text-align:center; font-size:.92rem; padding:22px 16px;
+           padding-bottom:calc(22px + env(safe-area-inset-bottom)); }
+  footer b { color:#fff; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="ساهد - الرئيسية">
+      <span class="badge">ساهد</span><span class="sub">عقارات · استثمار · سكراب</span>
+    </a>
+    <nav class="links" aria-label="التنقل الرئيسي">
+      <a href="#services">الخدمات</a>
+      <a href="#realestate">العقارات</a>
+      <a href="#scrap">السكراب</a>
+      <a href="#contact">تواصل</a>
+    </nav>
+    <button class="btn btn-wa" type="button" data-wa="hello">واتساب</button>
+  </div>
+</header>
+
+<main id="top">
+  <!-- الواجهة -->
+  <section class="hero">
+    <div class="wrap">
+      <span class="eyebrow">الرياض · المملكة العربية السعودية</span>
+      <h1>خدمات عامة، <em>عقارات</em> واستثمار، وسكراب بسعر واضح</h1>
+      <p class="lead">ساهد بوابتك لوساطة عقارية موثوقة، واستشارات استثمارية، وحاسبة سريعة تعرف فيها سعر السكراب والمعادن قبل لا تبيع.</p>
+      <div class="cta">
+        <button class="btn btn-wa" type="button" data-wa="hello">تواصل معنا على واتساب</button>
+        <a class="btn btn-ghost" href="#scrap">احسب سعر السكراب</a>
+      </div>
+      <ul class="pills" aria-label="مجالاتنا">
+        <li>وساطة عقارية</li><li>استشارات استثمارية</li><li>شراء السكراب والمعادن</li><li>خدمات عامة</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- الخدمات -->
+  <section class="block" id="services">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="kicker">خدماتنا</div>
+        <h2>كل اللي تحتاجه في مكان واحد</h2>
+        <p>نشتغل معك من أول استفسار إلى إتمام الصفقة، بوضوح وبدون تعقيد.</p>
+      </div>
+      <div class="cards">
+        <article class="card">
+          <div class="ico" aria-hidden="true">🏢</div>
+          <h3>الوساطة العقارية</h3>
+          <p>بيع وشراء وتأجير الأراضي والعقارات، مع تسويق ومتابعة للصفقة حتى الإفراغ.</p>
+        </article>
+        <article class="card">
+          <div class="ico" aria-hidden="true">📈</div>
+          <h3>الاستشارات الاستثمارية</h3>
+          <p>رأي مبني على دراسة قبل لا تدخل في أي فرصة، عقارية أو غيرها.</p>
+        </article>
+        <article class="card">
+          <div class="ico" aria-hidden="true">♻️</div>
+          <h3>السكراب والمعادن</h3>
+          <p>نحاس وألمنيوم وحديد وغيرها. تعرف السعر التقديري من الحاسبة، وتتواصل معنا للبيع.</p>
+        </article>
+        <article class="card">
+          <div class="ico" aria-hidden="true">🤝</div>
+          <h3>خدمات عامة</h3>
+          <p>عندك طلب ثاني؟ أرسل لنا تفاصيله ونشوف كيف نخدمك أو نوصلك للشخص المناسب.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- العقارات -->
+  <section class="block re" id="realestate">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="kicker">العقارات</div>
+        <h2>وش تبغى تسوي؟</h2>
+        <p>اختر طلبك وتفتح لك محادثة واتساب جاهزة، تكمل فيها التفاصيل بنفسك.</p>
+      </div>
+      <div class="re-grid">
+        <button class="re-btn" type="button" data-wa="sell-re"><b>أبغى أبيع عقار</b><span>أرض، شقة، فيلا، مزرعة أو مستودع</span><i>ابدأ على واتساب ←</i></button>
+        <button class="re-btn" type="button" data-wa="buy-re"><b>أبغى أشتري عقار</b><span>قل لنا المنطقة والميزانية ونبحث لك</span><i>ابدأ على واتساب ←</i></button>
+        <button class="re-btn" type="button" data-wa="rent-re"><b>إيجار</b><span>أجّر عقارك أو ابحث عن عقار للإيجار</span><i>ابدأ على واتساب ←</i></button>
+        <button class="re-btn" type="button" data-wa="invest"><b>استشارة استثمارية</b><span>ناقشنا فرصتك قبل لا تقرر</span><i>ابدأ على واتساب ←</i></button>
+      </div>
+      <p class="re-note">نعرض العقارات المتاحة عند الطلب. تواصل معنا وأرسل لك المتوفر المناسب لك.</p>
+    </div>
+  </section>
+
+  <!-- السكراب -->
+  <section class="block scrap" id="scrap">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="kicker">أدوات السكراب</div>
+        <h2>اعرف سعر السكراب بثواني</h2>
+        <p>اختر النوع، اكتب الوزن، وتطلع لك القيمة التقديرية حسب أسعار بورصة لندن للمعادن.</p>
+      </div>
+
+      <div class="tool">
+        <!-- اختيار النوع -->
+        <div id="pickView">
+          <h3>وش عندك؟ 👇</h3>
+          <div id="status" class="status" role="status">جاري تحميل الأسعار…</div>
+          <div id="cats" class="cats" hidden></div>
+        </div>
+
+        <!-- الحاسبة -->
+        <div id="calcView" hidden>
+          <button class="back" type="button" id="back">← رجوع للأنواع</button>
+          <div class="who"><span id="cEmoji"></span> <b id="cName"></b></div>
+          <div class="field">
+            <input id="w" type="text" inputmode="decimal" autocomplete="off" placeholder="الوزن" aria-label="الوزن">
+            <div class="seg" role="group" aria-label="وحدة الوزن">
+              <button id="uKg" class="on" type="button">كيلو</button>
+              <button id="uTon" type="button">طن</button>
+            </div>
+          </div>
+          <div class="result" aria-live="polite">
+            <div class="lbl">السعر التقديري</div>
+            <div class="price"><span id="price">0</span> <small>ريال</small></div>
+            <div class="unit" id="unitPrice"></div>
+          </div>
+          <div class="note" id="note" hidden></div>
+          <div class="acts">
+            <button class="btn btn-dark" id="speak" type="button">🔊 اسمع السعر</button>
+            <button class="btn btn-wa" id="share" type="button">📤 شارك واتساب</button>
+            <button class="btn btn-primary sell" id="sell" type="button">أبغى أبيع 💰</button>
+          </div>
+          <p class="small" id="updated"></p>
+          <p class="warn" id="stale" hidden>⚠️ الأسعار قديمة، تأكد من الاتصال</p>
+          <p class="small">السعر تقديري وليس عرض شراء</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- تواصل -->
+  <section class="block" id="contact">
+    <div class="wrap">
+      <div class="contact-card">
+        <h2>جاهزين نخدمك</h2>
+        <p>أرسل طلبك على واتساب أو اتصل مباشرة.</p>
+        <div class="cta">
+          <button class="btn btn-wa" type="button" data-wa="hello">واتساب</button>
+          <a class="btn btn-ghost" href="tel:+966505559585"><span class="num">0505559585</span> اتصال</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>بإدارة <b>ساهد</b> · الرياض · <span class="num">0505559585</span></footer>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const WA_DEFAULT = "966505559585";
+  const STALE_HOURS = 6;
+  const CACHE_KEY = "sahed-prices-v1";
+
+  let data = null;   // رد الدالة: { items, updatedAt, source, whatsappNumber }
+  let cat = null;    // النوع المختار
+  let unit = "kg";   // kg | ton
+
+  const phone = () => (data && data.whatsappNumber) || WA_DEFAULT;
+  const wa = (text, to) =>
+    window.open(`https://wa.me/${to || phone()}?text=${encodeURIComponent(text)}`, "_blank", "noopener");
+
+  // ---------- أزرار واتساب العامة ----------
+  const MESSAGES = {
+    "hello":   "السلام عليكم، أبغى أستفسر عن خدماتكم.",
+    "sell-re": "السلام عليكم، أبغى أبيع عقار.\nنوع العقار: \nالمدينة / الحي: \nالمساحة: ",
+    "buy-re":  "السلام عليكم، أبغى أشتري عقار.\nنوع العقار: \nالمدينة / الحي: \nالميزانية: ",
+    "rent-re": "السلام عليكم، عندي طلب إيجار.\nأبغى: أأجّر عقاري / أستأجر عقار\nنوع العقار: \nالمدينة / الحي: ",
+    "invest":  "السلام عليكم، أبغى استشارة استثمارية.\nنوع الفرصة: \nالمبلغ التقريبي: "
+  };
+  document.querySelectorAll("[data-wa]").forEach(b =>
+    b.addEventListener("click", () => wa(MESSAGES[b.dataset.wa] || MESSAGES.hello)));
+
+  // ---------- أدوات الأرقام ----------
+  const AR_DIGITS = "٠١٢٣٤٥٦٧٨٩";
+  const normalize = s => s.replace(/[٠-٩]/g, d => AR_DIGITS.indexOf(d)).replace(/[٫,]/g, ".").replace(/[^0-9.]/g, "");
+  const fmt = n => {
+    if (n >= 100) return Math.round(n).toLocaleString("en-US");
+    return n.toLocaleString("en-US", { maximumFractionDigits: 2, minimumFractionDigits: n < 10 ? 2 : 0 });
+  };
+  const weightValue = () => { const v = parseFloat(normalize($("w").value)); return v > 0 ? v : 0; };
+  const unitWord = () => unit === "kg" ? "كيلو" : "طن";
+  const totalSar = () => weightValue() * (unit === "kg" ? cat.sarPerKg : cat.sarPerTon);
+  const weightText = () => `${weightValue().toLocaleString("en-US")} ${unitWord()}`;
+  const dateText = iso => {
+    const d = new Date(iso);
+    if (isNaN(d)) return "غير معروف";
+    return d.toLocaleString("ar-SA-u-nu-latn", { dateStyle: "medium", timeStyle: "short" });
+  };
+
+  // ---------- اختيار النوع ----------
+  function renderCats() {
+    const box = $("cats");
+    box.innerHTML = "";
+    data.items.forEach(item => {
+      const b = document.createElement("button");
+      b.className = "cat"; b.type = "button";
+      const e = document.createElement("span"); e.className = "emoji"; e.textContent = item.emoji;
+      const n = document.createElement("span"); n.className = "nm"; n.textContent = item.name;
+      const p = document.createElement("span"); p.className = "pk"; p.textContent = `${fmt(item.sarPerKg)} ريال/كيلو`;
+      b.append(e, n, p);
+      b.addEventListener("click", () => pick(item));
+      box.appendChild(b);
+    });
+    $("status").hidden = true;
+    box.hidden = false;
+  }
+
+  async function loadPrices() {
+    $("status").hidden = false;
+    $("status").textContent = "جاري تحميل الأسعار…";
+    $("cats").hidden = true;
+    try {
+      const res = await fetch("/api/prices", { cache: "no-store" });
+      if (!res.ok) throw new Error(res.status);
+      data = await res.json();
+      try { localStorage.setItem(CACHE_KEY, JSON.stringify(data)); } catch {}
+    } catch {
+      try { data = JSON.parse(localStorage.getItem(CACHE_KEY)); } catch { data = null; }
+    }
+    if (data && data.items) return renderCats();
+    $("status").innerHTML = `ما قدرنا نجيب الأسعار 😕<br>`;
+    const r = document.createElement("button");
+    r.className = "retry"; r.type = "button"; r.textContent = "جرّب مرة ثانية";
+    r.addEventListener("click", loadPrices);
+    $("status").appendChild(r);
+  }
+
+  // ---------- الحاسبة ----------
+  function pick(item) {
+    cat = item; unit = "kg"; $("w").value = "";
+    $("cEmoji").textContent = item.emoji;
+    $("cName").textContent = item.name;
+    const note = $("note");
+    note.hidden = !item.manual;
+    if (item.manual) note.textContent = `${item.note || "سعر ثابت"} — ما يتحدث تلقائيًا`;
+    $("updated").textContent = `آخر تحديث للسعر: ${dateText(data.updatedAt)} · المصدر: ${data.source}`;
+    const ageH = (Date.now() - new Date(data.updatedAt).getTime()) / 36e5;
+    $("stale").hidden = !(ageH > STALE_HOURS);
+    $("pickView").hidden = true;
+    $("calcView").hidden = false;
+    refresh();
+    $("scrap").scrollIntoView({ block: "start" });
+    $("w").focus({ preventScroll: true });
+  }
+
+  function refresh() {
+    const w = weightValue();
+    $("uKg").classList.toggle("on", unit === "kg");
+    $("uTon").classList.toggle("on", unit === "ton");
+    $("price").textContent = w > 0 ? fmt(totalSar()) : "0";
+    $("unitPrice").textContent = unit === "kg"
+      ? `سعر الكيلو: ${fmt(cat.sarPerKg)} ريال`
+      : `سعر الطن: ${fmt(cat.sarPerTon)} ريال`;
+    ["speak", "share", "sell"].forEach(id => $(id).disabled = !(w > 0));
+  }
+
+  $("w").addEventListener("input", e => {
+    const clean = normalize(e.target.value).replace(/(\..*)\./g, "$1").slice(0, 10);
+    if (clean !== e.target.value) e.target.value = clean;
+    refresh();
+  });
+  $("uKg").addEventListener("click", () => { unit = "kg"; refresh(); });
+  $("uTon").addEventListener("click", () => { unit = "ton"; refresh(); });
+  $("back").addEventListener("click", () => {
+    $("calcView").hidden = true;
+    $("pickView").hidden = false;
+    $("scrap").scrollIntoView({ block: "start" });
+  });
+
+  $("sell").addEventListener("click", () => wa(
+    `السلام عليكم، أبغى أبيع، تواصل معي.\nالنوع: ${cat.name}\nالوزن: ${weightText()}\nالسعر التقديري: ${fmt(totalSar())} ريال`));
+  $("share").addEventListener("click", () => wa(
+    `سعر ${cat.name} (${weightText()}): ${fmt(totalSar())} ريال تقريبًا\nالسعر تقديري وليس عرض شراء\nساهد: ${location.origin}/#scrap`, ""));
+
+  $("speak").addEventListener("click", () => {
+    if (!("speechSynthesis" in window)) { alert("جوالك ما يدعم الصوت"); return; }
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(
+      `السعر التقديري لـ ${weightText()} ${cat.name}، ${fmt(totalSar())} ريال تقريبًا`);
+    u.lang = "ar-SA"; u.rate = 0.9;
+    speechSynthesis.speak(u);
+  });
+
+  // ---------- تشغيل ----------
+  if ("serviceWorker" in navigator) navigator.serviceWorker.register("/sw.js").catch(() => {});
+  loadPrices();
+})();
+</script>
+</body>
+</html>

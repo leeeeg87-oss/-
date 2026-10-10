@@ -1,0 +1,14 @@
+{
+  "usdToSar": 3.75,
+  "cacheMinutes": 60,
+  "whatsappNumber": "966505559585",
+  "categories": [
+    { "id": "iron",     "name": "حديد",          "emoji": "🔩", "source": "manual",       "manualSarPerKg": 0.8, "manualNote": "سعر ثابت" },
+    { "id": "copper",   "name": "نحاس",          "emoji": "🟠", "source": "lme_copper",   "percent": 70 },
+    { "id": "aluminum", "name": "ألمنيوم",       "emoji": "🥫", "source": "lme_aluminum", "percent": 50 },
+    { "id": "steel",    "name": "ستيل",          "emoji": "🍴", "source": "lme_nickel",   "percent": 6 },
+    { "id": "battery",  "name": "بطاريات",       "emoji": "🔋", "source": "lme_lead",     "percent": 40 },
+    { "id": "cables",   "name": "كيبلات",        "emoji": "🔌", "source": "lme_copper",   "percent": 45 },
+    { "id": "doors",    "name": "أبواب ومظلات",  "emoji": "🚪", "source": "lme_aluminum", "percent": 40 }
+  ]
+}
